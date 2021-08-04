@@ -15,6 +15,9 @@ class Books(CollectionBase):
 		
 	
 	def get_books(book_ids: list):
-	''' Get all the books in the given book ids list, useful when querying all user's books. '''
+		''' 
+		Get all the books in the given book ids list, 
+		useful when querying all user's books. 
+		'''
 		for id in book_ids:
 			yield self.find_by_id(id)

@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, redirect
 from pymongo import MongoClient
 from flask_cors import CORS
 
-from .config import conf
+from config import conf
 from backend.routes import *
 
 app = Flask(__name__, template_folder=conf['template folder'])

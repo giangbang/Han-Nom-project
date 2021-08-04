@@ -29,7 +29,7 @@ class CollectionBase(object):
 		'''
 		missing_fields = self.required_fields - element.keys()
 		if len(missing_fields) > 0:
-			return error('Fields missing :', list(missing_fields))
+			return error('Fields missing :'+ str(list(missing_fields)))
 
 		element["created"] = datetime.now()
 		element["updated"] = datetime.now()

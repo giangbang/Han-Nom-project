@@ -29,3 +29,25 @@ def insert():
 	element = request.json
 		
 	return users.insert(element)
+	
+@user_blueprint.route('/login', methods=['POST'])
+def login():
+	element = request.json
+	password = element['password']
+	username = element['username']
+	
+	if not username or not password:
+		return error('missing username or password.')
+	return users.login(username, password)
+	
+@user_blueprint.route('/logout', methods=['GET'])
+def logout():
+	return users.logout()
+
+@user_blueprint.route('/register', methods=['POST'])
+def register():
+	return users.register(request.json)
+
+@user_blueprint.route('/who', methods=['GET'])
+def who():
+	return users.who()

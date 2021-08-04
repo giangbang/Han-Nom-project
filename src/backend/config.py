@@ -2,5 +2,6 @@ conf = {
 	'url': 'localhost',
 	'database': 'han-nom',
 	'user': '',
-	'password': ''
+	'password': '',
+	'encode-password': 'utf-8'
 }
