@@ -52,3 +52,4 @@ class Users(CollectionBase):
 		Return the current account id that is logged in
 		'''
 		return success(session.get('username', None))
+		

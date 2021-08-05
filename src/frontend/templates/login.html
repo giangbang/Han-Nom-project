@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>log in</title>
+	
+	<!-- CSS -->
+	<link rel="stylesheet" href="static/css/style.css">
+	
+	<!-- JavaScript -->
+	<script src="static/js/script.js"></script>
+</head>
+
+<body>
+	<div class="wrapper fadeInDown">
+		<div id="formContent">
+			<!-- Tabs Titles -->
+			<h2 class="active"> Sign In </h2>
+			<h2 class="inactive underlineHover">Sign Up </h2>
+
+			<!-- Login Form -->
+			<div class='login-container'>
+				<form>
+					<input type="text" id="username-input" class="fadeIn second" name="login" placeholder="username" required>
+					<input type="password" id="password-input" class="fadeIn third" name="login" placeholder="password" required>
+				</form>
+				<button type="submit" class="fadeIn fourth" onclick='submit_login_form()'>Log in</button>
+			</div>
+			<!-- Remind Passowrd -->
+			<div id="formFooter">
+				<a class="underlineHover" href="#">Forgot Password?</a>
+			</div>
+
+  </div>
+</div>
+</body>

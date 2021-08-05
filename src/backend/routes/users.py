@@ -32,13 +32,15 @@ def insert():
 	
 @user_blueprint.route('/login', methods=['POST'])
 def login():
-	element = request.json
+	print(vars(request))
+	element = request.get_json(force=True)
+	print(element)
 	password = element['password']
 	username = element['username']
 	
 	if not username or not password:
 		return error('missing username or password.')
-	return users.login(username, password)
+	return 'fef'
 	
 @user_blueprint.route('/logout', methods=['GET'])
 def logout():
