@@ -1,18 +1,36 @@
 from .base import CollectionBase
+from .images import images
+
+# {
+	# bookId
+	# page_number: 
+	# annotations: [
+		# {x,y,w,h}
+	# ]
+	# verified: 
+	# imgId:
+# }
 
 class Pages(CollectionBase):
 	def __init__(self):
 		super(Pages, self).__init__('Pages')
-		self.required_fields.update(['image', 'name'])
+		self.required_fields.update(['page_number', 'bookId', 'imgId'])
 		self.optional_fields.update(
 			verified=False,
 			annotations=None,
 		)
 		
-	def get_pages(page_ids: list):
-		''' Get all the pages in a book, given the list of page ids.
-		Since each page can be large, this funtion sequentially returns each page one after another.
-		'''
-		for id in page_ids:
-			yield self.find_by_id(id)
-			
+	def upload(self, page_img, bookId, page_number, **kwargs):
+		insert_img = images.upload(page_img)
+		if not insert_img['success']:
+			return insert_img
+		insert_img_id = insert_img['data']
+		new_page = {
+			'imgId': insert_img_id,
+			'page_number': page_number,
+			'bookId': bookId,
+			**kwargs
+		}
+		return self.insert(new_page)
+
+pages = Pages()

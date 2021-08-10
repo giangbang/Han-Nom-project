@@ -1,10 +1,12 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, redirect
 from ..message import *
 from ..models import users
+from .response import response
 
 
 user_blueprint = Blueprint('users', __name__, url_prefix='/users')
 
+# dont use
 @user_blueprint.route('/update',methods=['POST'])
 def update():
 	json_data = request.json
@@ -12,11 +14,11 @@ def update():
 	json_data.pop('_id')
 	
 	if id is None:
-		return error('Id field not found')
+		return response(error('Id field not found'), False)
 	
-	return users.update(id, json_data)
+	return response(users.update(id, json_data), False)
 	
-	
+#dont use
 @user_blueprint.route('/delete',methods=['DELETE'])
 def delete():
 	id = request.args.get('id', default=None, type=str)
@@ -24,23 +26,22 @@ def delete():
 		return error('Missing id field')
 	return users.delete(id)
 	
+# dont use
 @user_blueprint.route('/insert', methods=['POST'])
 def insert():
 	element = request.json
-		
 	return users.insert(element)
+
 	
 @user_blueprint.route('/login', methods=['POST'])
 def login():
-	print(vars(request))
 	element = request.get_json(force=True)
-	print(element)
 	password = element['password']
 	username = element['username']
-	
-	if not username or not password:
-		return error('missing username or password.')
-	return 'fef'
+	ret = users.login(username, password)
+	if ret['success']:
+		return response('/', redirect=True)
+	return response(ret['data'], False)
 	
 @user_blueprint.route('/logout', methods=['GET'])
 def logout():
@@ -48,7 +49,10 @@ def logout():
 
 @user_blueprint.route('/register', methods=['POST'])
 def register():
-	return users.register(request.json)
+	res = users.register(request.get_json(force=True))
+	if res['success']:
+		return response('/', redirect=True)
+	return response(res['data'], False)
 
 @user_blueprint.route('/who', methods=['GET'])
 def who():

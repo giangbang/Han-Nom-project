@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Read</title>
+	
+	<!-- CSS -->
+	<link rel="stylesheet" href="static/css/style.css">
+	
+	<!-- JavaScript -->
+	<script src="static/js/script.js"></script>
+</head>
+
+<body>
+	<div id="wrapper">
+		<header class='main-header'>
+			<div class="home">
+				<a href="/">Home</a>
+			</div>
+		</header>
+		<div class="container">
+			<div class="view-panel">
+				{% for page in pages %}
+					<div class="view">
+						<canvas type="image-panel"  width="500" height="500" >
+							<img src="image?id={{ page['imgId'] }}" onload="draw_ing_on_canvas(this)">
+						</canvas>
+					</div>
+					<div class="load-annotation">
+						<button class="btn-annotation">Annotation</button>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</body>

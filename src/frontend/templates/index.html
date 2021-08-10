@@ -5,36 +5,57 @@
 	<title>Han Nom</title>
 	
 	<!-- CSS -->
-	<link rel="stylesheet" href="static/css/style/css">
+	<link rel="stylesheet" href="static/css/style.css">
 	
 	<!-- JavaScript -->
 	<script src="static/js/script.js"></script>
 </head>
 <body>
-	<div class='wrap-body'>
+	<div class='wrap'>
 		<header class='main-header'>
 			<div class='search-bar'>
 				<form id='form-container'>	
 					<div id='search-text'>
 						<input type='text' id='s' placeholder='Search'>
+						<input type='submit' value='search'> 
 					</div>
-					<button class='search-button'>search</button>
+					<!-- <button class='search-button'>search</button> -->
 				</form>
+			</div>
+			<div class='upload'>
+				<form id='upload form' method="post" action="{{ url_for('books.save_uploaded_zipfile') }}" enctype="multipart/form-data">
+					<input type='file' id='file-input' accept=".zip,.rar,.7zip" name='upload-file' required>
+					<input type='submit' id='submit-file' value='Upload' >
+				</form>
+			</div>
+			<div class='user info'>
+				<span class='welcome'>
+					Hi, {{ username }}
+				</span>
 			</div>
 		</header>
 		<section id='container'>
 			<div class='wrap-container'>
+				<div id='container header'>
+					<span id='notes'>
+						{% if books|length != 0 %}
+							You have total of {{ books|length }} book(s) uploaded.
+						{% else %}	
+							You have not uploaded any book yet.
+						{% endif %}
+					</span>
+				</div>
 				<div class='grid'>
 					{% for book in books %}
-					
-						<div class='book-cell'>
-							<img src=''>
-							<div class='caption'>
-								<h3>{{ book['name'] }}</h3>
-								<p>Last updated: {{ book['updated'] }}</p>
+						<a href="book?id={{ book['_id'] }}">
+							<div class='book-cell'>
+								<img class='thumbnail' src='image?id={{ book["cover_image_id"] }}' width="100" height="100" >
+								<div class='caption'>
+									<h3>{{ book['name'] }}</h3>
+									<span>Last update: {{ book['updated'] }}</span>
+								</div>
 							</div>
-						</div>
-						
+						</a>
 					{% endfor %}
 				</div>
 			</div>

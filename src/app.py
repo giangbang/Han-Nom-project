@@ -5,7 +5,7 @@ from pymongo import MongoClient
 from flask_cors import CORS
 
 from config import conf
-from backend.routes import *
+from backend import *
 
 app = Flask(__name__, 
 	template_folder=conf['template folder'], 

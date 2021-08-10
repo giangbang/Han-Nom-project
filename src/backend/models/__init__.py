@@ -1,9 +1,7 @@
-from .books import Books
-from .pages import Pages
-from .users import Users
+from .books import books
+from .pages import pages
+from .users import users
+from .images import images
 
-books = Books()
-pages = Pages()
-users = Users()
 
-__all__ = ['books', 'pages', 'users']
+__all__ = ['books', 'pages', 'users', 'images']
