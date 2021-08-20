@@ -26,21 +26,20 @@ class Books(CollectionBase):
 			criteria.update(public=True) # books that are public
 		return super(Books, self).find(criteria, *args, **kwargs)
 		
-	def upload_book(self, name, files, filenames, userId, cover=True):
-		new_book = {"userId":userId, "name":name.rsplit('.', 1)[0]}
-		if cover:
-			cover_img = files.pop(0)
-			filenames.pop(0)
-			insert_cover = images.upload(cover_img)
-			if insert_cover['success']:
-				cover_img_id = insert_cover['data']
-				new_book.update(cover_image_id=cover_img_id)
+	def upload_book(self, name, files, filenames, userId):
+		new_book = {"userId":userId, "name":name.rsplit('.', 1)[0]}		
 		insert_book = self.insert(new_book)
+		
 		if not insert_book['success']:
 			return insert_book
 		insert_book_id = insert_book['data']
+		cover_page_img_id = None
+		
 		for filename, file in zip(filenames, files):
-			pages.upload(file, insert_book_id, filename)
-		return success()
+			uploaded_page = pages.upload(file, insert_book_id, filename)
+			if not cover_page_img_id:
+				cover_page_img_id = uploaded_page['data']
+		self.update(insert_book_id, {"cover_image_id":cover_page_img_id})
+		return success("Upload book successfully")
 		
 books = Books()

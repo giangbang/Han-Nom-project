@@ -1,5 +1,6 @@
 from .base import CollectionBase
 from .images import images
+from ..message import *
 
 # {
 	# bookId
@@ -31,6 +32,9 @@ class Pages(CollectionBase):
 			'bookId': bookId,
 			**kwargs
 		}
-		return self.insert(new_page)
+		ok = self.insert(new_page)['success']
+		if ok:
+			return success(insert_img_id)
+		return error("!")
 
 pages = Pages()

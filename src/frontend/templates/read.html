@@ -21,13 +21,15 @@
 		<div class="container">
 			<div class="view-panel">
 				{% for page in pages %}
-					<div class="view">
-						<canvas type="image-panel"  width="500" height="500" >
-							<img src="image?id={{ page['imgId'] }}" onload="draw_ing_on_canvas(this)">
-						</canvas>
-					</div>
-					<div class="load-annotation">
-						<button class="btn-annotation">Annotation</button>
+					<div id="{{ page['imgId'] }}">
+						<div class="view">
+							<canvas type="image-panel"  width="800" height="800" >
+								<img src="image?id={{ page['imgId'] }}" onload="draw_img_on_canvas(this)">
+							</canvas>
+						</div>
+						<div class="load-annotation">
+							<button class="btn-annotation" data-img-id="{{ page['imgId'] }}" onclick="get_annotation(this)">Annotation</button>
+						</div>
 					</div>
 				{% endfor %}
 			</div>

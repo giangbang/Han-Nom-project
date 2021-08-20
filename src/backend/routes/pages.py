@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from ..message import *
-from ..models import pages
-
+from ..models import pages, images
+from ..detectors.DB import *
 
 page_blueprint = Blueprint('pages', __name__, url_prefix='/pages')
 
@@ -29,3 +29,12 @@ def insert():
 	element = request.json
 		
 	return pages.insert(element)
+
+	
+@page_blueprint.route('/auto-annotate', methods=['GET'])
+def annotate():
+	img_id = request.args.get('id', default=None, type=str)
+	img = images.find_by_id(img_id)['img']
+	bbox = detect_single_image(img)
+	return bbox
+	

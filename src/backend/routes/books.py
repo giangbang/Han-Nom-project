@@ -51,6 +51,8 @@ def get_cover():
 	
 @book_blueprint.route('/upload', methods=['POST'])
 def save_uploaded_zipfile():
+	if not users.isLogin():
+		return error("not login") # need something likes error 404 here
 	file = request.files['upload-file']  
 	name = file.filename
 	file_like_object = file.stream._file  
