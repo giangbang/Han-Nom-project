@@ -6,38 +6,59 @@
 	
 	<!-- CSS -->
 	<link rel="stylesheet" href="static/css/style.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	
 	<!-- JavaScript -->
 	<script src="static/js/script.js"></script>
+	
 </head>
 <body>
-	<div class='wrap'>
+	<div class=''>
 		<header class='main-header'>
-			<div class='search-bar'>
-				<form id='form-container'>	
-					<div id='search-text'>
-						<input type='text' id='s' placeholder='Search'>
-						<input type='submit' value='search'> 
+			<div class="nav-wrapper">
+					
+				<nav class="navbar navbar-default" role="navigation">
+				
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<div class='nav col-sm-2 col-md-2'>
+							<form class="navbar-form" role="search" id='form-container'>	
+								<div id='search-text' class="input-group">
+									<input class="form-control" name="q" type='text' id='s' placeholder='Search'>
+									<div class="input-group-btn">
+										<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+									</div>
+								</div>
+							</form>
+						</div>
+						
+						<div class='col-sm-3 col-md-3'>
+							<form class ="navbar-form" id='upload-form' method="post" action="{{ url_for('books.save_uploaded_zipfile') }}" enctype="multipart/form-data">
+								<div class="custom-file" id="upload-wrapper">
+									<input type="file" class="custom-file-input" id='file-input' accept=".zip,.rar,.7zip" name='upload-file' required>
+									<input type='submit' class="" id='submit-file' value='Upload' >
+								</div>
+							</form>
+						</div>
+						
+						<ul class="nav navbar-nav navbar-right">
+							<li><a class="underlineHover" href="login">Sign out</a></li>
+						</ul>
 					</div>
-					<!-- <button class='search-button'>search</button> -->
-				</form>
-			</div>
-			<div class='upload'>
-				<form id='upload form' method="post" action="{{ url_for('books.save_uploaded_zipfile') }}" enctype="multipart/form-data">
-					<input type='file' id='file-input' accept=".zip,.rar,.7zip" name='upload-file' required>
-					<input type='submit' id='submit-file' value='Upload' >
-				</form>
-			</div>
-			<div class='user info'>
-				<span class='welcome'>
-					Hi, {{ username }}
-				</span>
+					
+				</nav>
+				
 			</div>
 		</header>
 		<section id='container'>
 			<div class='wrap-container'>
-				<div id='container header'>
+				<div id='container-header'>
 					<span id='notes'>
+						<div class='user-info'>
+							<span class='welcome'>
+								Hi, {{ username }}
+							</span>
+						</div>
 						{% if books|length != 0 %}
 							You have total of {{ books|length }} book(s) uploaded.
 						{% else %}	
@@ -47,15 +68,18 @@
 				</div>
 				<div class='grid'>
 					{% for book in books %}
-						<a href="book?id={{ book['_id'] }}">
-							<div class='book-cell'>
-								<img class='thumbnail' src='image?id={{ book["cover_image_id"] }}' width="100" height="100" >
-								<div class='caption'>
-									<h3>{{ book['name'] }}</h3>
-									<span>Last update: {{ book['updated'] }}</span>
+						<div class='item'>
+							<a class="image-popup" href="book?id={{ book['_id'] }}">
+								<div class='book-cell'>
+									<img class='' src='image?id={{ book["cover_image_id"] }}' width="260" height="260">
+									<div class='caption'>
+										<h3>{{ book['name'] }}</h3>
+										<span>Last update: {{ book['updated'] }}</span>
+									</div>
 								</div>
-							</div>
-						</a>
+							</a>
+
+						</div>
 					{% endfor %}
 				</div>
 			</div>

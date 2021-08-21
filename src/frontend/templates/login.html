@@ -6,32 +6,48 @@
 	
 	<!-- CSS -->
 	<link rel="stylesheet" href="static/css/style.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+	<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous"> -->
+	
 	
 	<!-- JavaScript -->
 	<script src="static/js/script.js"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script> -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+	
 </head>
 
 <body>
-	<div class="wrapper fadeInDown">
+	<div class="wrapper container-sm fadeInDown">
 		<div id="formContent">
 			<!-- Tabs Titles -->
-			<h2 class="inactive underlineHover">Sign In </h2>
+			<h2 class="underlineHover inactive">Sign In </h2>
 			<hr>
 			<!-- Login Form -->
-			<div class='login-container'>
-				<div class='note'>
+			<div>
+				<div class="" id='warning' role="alert">
 					<span id='warning'></span>
 				</div>
 				<form>
-					<input type="text" id="username-input" class="fadeIn second" name="login" placeholder="username" onchange='reset_warning()' required>
-					<input type="password" id="password-input" class="fadeIn third" name="login" placeholder="password" onchange='reset_warning()' required>
-					<input type="submit" class="fadeIn fourth" onclick='submit_login_form(event)' placeholder="Log in">
+					<div class="mb-3">
+						<label for="username-input" class="form-label">username</label>
+						<input type="text" id="username-input" class="form-control" name="login" placeholder="username" onchange='reset_warning()' required>
+					</div>
+					<div class="mb-3">
+						<label for="password-input" class="form-label">password</label>
+						<input type="password" id="password-input" class="form-control" name="login" placeholder="password" onchange='reset_warning()' required>
+					</div>
+					<input type="submit" class="btn btn-light" onclick='submit_login_form(event)' value="Log in">
 				</form>
 			</div>
 			<!-- Remind Passowrd -->
 			<div id="formFooter">
-				<a class="underlineHover" href="#">Forgot Password?</a>
-				<a class="register" href="register">Sign up</a>
+				<div class="footerElement">
+					<a class="underlineHover" href="#">Forgot Password?</a>
+				</div>
+				<div class="footerElement">
+					<a class="underlineHover" href="register">Sign up</a>
+				</div>
 			</div>
 
   </div>
