@@ -21,7 +21,7 @@
 				<nav class="navbar navbar-default" role="navigation">
 				
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						<div class='nav col-sm-2 col-md-2'>
+						<div class='nav col-sm-4 col-md-4'>
 							<form class="navbar-form" role="search" id='form-container'>	
 								<div id='search-text' class="input-group">
 									<input class="form-control" name="q" type='text' id='s' placeholder='Search'>
@@ -32,7 +32,7 @@
 							</form>
 						</div>
 						
-						<div class='col-sm-3 col-md-3'>
+						<div class='col-sm-4 col-md-4'>
 							<form class ="navbar-form" id='upload-form' method="post" action="{{ url_for('books.save_uploaded_zipfile') }}" enctype="multipart/form-data">
 								<div class="custom-file" id="upload-wrapper">
 									<input type="file" class="custom-file-input" id='file-input' accept=".zip,.rar,.7zip" name='upload-file' required>

@@ -23,7 +23,7 @@
 				{% for page in pages %}
 					<div id="{{ page['imgId'] }}">
 						<div class="view">
-							<canvas type="image-panel"  width="800" height="800" >
+							<canvas type="image-panel"  width="400" height="400" >
 								<img src="image?id={{ page['imgId'] }}" onload="draw_img_on_canvas(this)">
 							</canvas>
 						</div>

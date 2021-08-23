@@ -6,33 +6,57 @@
 	
 	<!-- CSS -->
 	<link rel="stylesheet" href="static/css/style.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+	<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous"> -->
+	
 	
 	<!-- JavaScript -->
 	<script src="static/js/script.js"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script> -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+	
 </head>
 
 <body>
-	<div class='wrapper'>
-		<form class="modal-content" onchange="reset_warning()">
-			<div class="container">
-				<h1>Sign Up</h1>
-				<p>Please fill in this form to create an account.</p>
-				<span id='warning'></span>
-				<hr>
-				<label for="username"><b>Username</b></label>
-				<input id="username-content" type="text" placeholder="Enter Username" name="name" required>
-
-				<label for="psw"><b>Password</b></label>
-				<input id="password-content" onchange="check_password_on_register()" type="password" placeholder="Enter Password" name="psw" required>
-
-				<label for="psw-repeat"><b>Repeat Password</b></label>
-				<input id="password-repeat-content" onchange="check_password_on_register()" type="password" placeholder="Repeat Password" name="psw-repeat" required>
-				
-				<label>
-					<input type="checkbox" checked="checked" name="remember"> Remember me
-				</label>
-				<button id="submit-signup-button" onclick="submit_register_form(event)" type="submit" class="signupbtn" disabled>Sign Up</button>
+	<div class="wrapper container-sm fadeInDown">
+		<div id="formContent">
+			<!-- Tabs Titles -->
+			<h2 class="underlineHover inactive">Sign Up </h2>
+			<p> Please fill in this form to create an account </p>
+			<hr>
+			<!-- Sign up form -->
+			<div>
+				<div class="" id='warning' role="alert">
+					<span id='warning'></span>
+				</div>
+				<form onchage="reset_warning()">
+					<div class="mb-3">
+						<label for="username" class="form-label">username</label>
+						<input type="text" id="username-content" class="form-control" name="name" placeholder="Enter Username" required>
+					</div>
+					<div class="mb-3">
+						<label for="psw">Password</label>
+						<input type="password" id="password-content" class="form-control" name="psw" placeholder="Enter Password" onchange='check_password_on_register()' required>
+					</div>
+					<div class="mb-3">
+						<label for="psw-repeat">Repeat Password</label>
+						<input type="password" id="password-repeat-content" class="form-control" name="psw-repeat" placeholder="Repeat Password" onchange='check_password_on_register()' required>
+					</div>
+					<div class="mb-3">
+						<label>
+							<input type="checkbox" checked="checked" name="remember"> Remember me
+						</label>
+					</div>
+					<button id="submit-signup-button" onclick="submit_register_form(event)" type="submit" class="signupbtn btn btn-light" disabled>Sign Up</button>
+				</form>
 			</div>
-		</form>
-	</div>
+			<!-- Add footer -->
+			<div id="formFooter">
+				<div class="footerElement">
+					<a class="underlineHover" href="login">Login</a>
+				</div>
+			</div>
+
+  </div>
+</div>
 </body>
