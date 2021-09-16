@@ -125,12 +125,13 @@ function draw_boxes(bbox, shape, node_id) {
 	var ctx = c.getContext("2d");
 	ctx.lineWidth = ".6";
 	ctx.strokeStyle = "red";
+	var w = shape[1], h = shape[0]
 	for (const box of bbox) {
 		ctx.beginPath();
-		ctx.moveTo(box[0][0]/shape[0]*c.width, box[0][1]/shape[1]*c.height);
-		ctx.lineTo(box[1][0]/shape[0]*c.width, box[1][1]/shape[1]*c.height);
-		ctx.lineTo(box[2][0]/shape[0]*c.width, box[2][1]/shape[1]*c.height);
-		ctx.lineTo(box[3][0]/shape[0]*c.width, box[2][1]/shape[1]*c.height);
+		ctx.moveTo(1.*box[0][0]/w*c.width, 1.*box[0][1]/h*c.height);
+		ctx.lineTo(1.*box[1][0]/w*c.width, 1.*box[1][1]/h*c.height);
+		ctx.lineTo(1.*box[2][0]/w*c.width, 1.*box[2][1]/h*c.height);
+		ctx.lineTo(1.*box[3][0]/w*c.width, 1.*box[3][1]/h*c.height);
 		ctx.closePath();
 		ctx.stroke();
 	}
