@@ -1,9 +1,4 @@
-| Method | url |
-| --- | --- | 
-| POST | /pages/insert | 
-| DELETE | /pages/delete?id=<string> |
-| POST | /pages/update |
-
+Download and install [mongodb](https://www.mongodb.com/), then run:
 ```sh
 pip install -r requirements.txt
 cd src
