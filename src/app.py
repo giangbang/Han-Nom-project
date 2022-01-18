@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, redirect
 from pymongo import MongoClient
 from flask_cors import CORS
 
-from config import conf
+from config import config as conf
 from backend import *
 
 def main():
@@ -24,4 +24,4 @@ def main():
 if __name__ == '__main__':
 	
 	app = main()
-	app.run(debug=conf['debug'])
+	app.run(debug=conf['debug'], port=conf['port'])

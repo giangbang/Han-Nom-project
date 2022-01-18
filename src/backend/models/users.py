@@ -1,7 +1,7 @@
 from .base import CollectionBase
 from flask import session
 from ..message import *
-from ..config import conf
+from config import config as conf
 from .books import books
 from bson import ObjectId
 

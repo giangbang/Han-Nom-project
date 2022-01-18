@@ -1,10 +1,10 @@
-import os
+import yaml
 
+config = {}
 
-conf = {
-	'secret': os.urandom(12).hex(),
-	'debug': True,
-	'template folder': './frontend/templates',
-	'static folder': './frontend/static',
-	'run with torch': True
-}
+with open("conf.yaml", "r") as stream:
+    try:
+        config.update(yaml.safe_load(stream))
+    except yaml.YAMLError as exc:
+        print(exc)
+        print('Configuration file not found!')

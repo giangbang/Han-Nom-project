@@ -3,8 +3,7 @@ from pymongo import MongoClient
 from bson import ObjectId
 from ..message import *
 
-from ..config import conf
-
+from config import config as conf
 
 client = MongoClient(conf['url'])
 db = client[conf['database']]

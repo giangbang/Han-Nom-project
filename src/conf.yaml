@@ -1,0 +1,11 @@
+secret: fwjf1k2j
+debug: True
+template folder: './frontend/templates'
+static folder: './frontend/static'
+run with torch: True
+url: 'localhost'
+database: 'han-nom'
+user: ''
+password: ''
+encode-password: 'utf-8'
+port: 5001
