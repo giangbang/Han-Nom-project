@@ -10,7 +10,7 @@ indx_blueprint = Blueprint('', __name__)
 def main_page():
 	if not users.who(): 
 		return redirect('/login')
-	return render_index()
+	return render_index() 
 
 @indx_blueprint.route('/login', methods=['GET'])
 def login():

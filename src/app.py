@@ -8,20 +8,17 @@ from config import config as conf
 from backend import *
 
 def main():
-	app = Flask(__name__, 
-		template_folder=conf['template folder'], 
-		static_folder=conf['static folder'])
+    app = Flask(__name__, 
+        template_folder=conf['template folder'], 
+        static_folder=conf['static folder'])
 
-	CORS(app)
-	app.secret_key = conf['secret']
+    CORS(app)
+    app.secret_key = conf['secret']
 
-	app.register_blueprint(page_blueprint)
-	app.register_blueprint(book_blueprint)
-	app.register_blueprint(user_blueprint)
-	app.register_blueprint(indx_blueprint)
-	return app
+    app.register_blueprint(api_blueprint)
+    return app
 
 if __name__ == '__main__':
-	
-	app = main()
-	app.run(debug=conf['debug'], port=conf['port'])
+    
+    app = main()
+    app.run(host=conf['url'], debug=conf['debug'], port=conf['port'])

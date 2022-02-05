@@ -98,4 +98,4 @@ class CollectionBase(object):
         deleted = self.collection.delete_one({"_id": ObjectId(id)})
         if deleted.deleted_count == 1:
             return success()
-        return error('id not found')
+        return error('{} not found'.format(id))
