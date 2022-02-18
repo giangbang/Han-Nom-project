@@ -38,12 +38,11 @@ class Books(CollectionBase):
         
         page_ids = []
         for filename, file in zip(filenames, files):
-            print(type(file))
             uploaded_page = pages.upload(file, insert_book_id, filename)
             if uploaded_page['success']:
-                page_ids.append(uploaded_page['data'])
+                page_ids.append(uploaded_page['data'][1])
                 if not cover_page_img_id:
-                    cover_page_img_id = uploaded_page['data']
+                    cover_page_img_id = uploaded_page['data'][0]
         self.update(insert_book_id, {"cover_image_id":cover_page_img_id})
         return success(page_ids)
         
@@ -71,10 +70,15 @@ class Books(CollectionBase):
         files: string images need to be detected
         id and file order should match each other
         '''
-        res = detect_batch_image(files)
+        res = [detect_single_image(file) for file in files]
+
         ok = True
-        for i, (page_id, bbox, shape) in enumerate(zip(page_ids, res['bbox'], res['shape'])):
+        for i, page_id in enumerate(page_ids):
+            bbox = res[i]['bbox']
+            shape = list(res[i]['shape'])
+       
             ok = ok & pages.update_bbox(page_id, bbox, shape)['success']
+  
         if ok:
             return success("Done")
         return error("Something went wrong :v")

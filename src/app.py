@@ -16,6 +16,10 @@ def main():
     app.secret_key = conf['secret']
 
     app.register_blueprint(api_blueprint)
+    app.register_blueprint(page_blueprint)
+    app.register_blueprint(book_blueprint)
+    app.register_blueprint(user_blueprint)
+    app.register_blueprint(indx_blueprint)
     return app
 
 if __name__ == '__main__':

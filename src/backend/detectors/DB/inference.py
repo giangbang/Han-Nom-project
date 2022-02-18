@@ -92,9 +92,7 @@ class DBInference:
         _imgs, _img_shapes = list(zip(*_imgs))
         
         _img_shapes = list(_img_shapes)
-    
-        _imgs = torch.cat(_imgs)
-        
+            
         batch = {'image': _imgs, 'shape': _img_shapes}
         
         with torch.no_grad():

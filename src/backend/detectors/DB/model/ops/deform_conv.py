@@ -200,8 +200,8 @@ class ModulatedDeformConv(nn.Module):
   def forward(self, x, offset, mask): 
     # mask: B x 9 x H x W
     b, c, h, w = x.shape
-    if self.coord is None:
-      self._cache_at_first_time_run(h,w)
+    # if self.coord is None:
+    self._cache_at_first_time_run(h,w)
       
     offset = offset.view(b, self.kernel_size[0]**2, 2, h, w).permute([0,3,4,1,2]) # b, h, w, 9, 2
     coord = offset + self.coord

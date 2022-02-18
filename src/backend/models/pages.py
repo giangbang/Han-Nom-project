@@ -44,9 +44,9 @@ class Pages(CollectionBase):
             'bookId': bookId,
             **kwargs
         }
-        ok = self.insert(new_page)['success']
-        if ok:
-            return success(insert_img_id)
+        ok = self.insert(new_page)
+        if ok['success']:
+            return success([insert_img_id, ok['data']])
         return error("Something went wrong went inserting pages")
 
 pages = Pages()

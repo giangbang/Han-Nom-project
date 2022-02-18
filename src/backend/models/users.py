@@ -37,9 +37,11 @@ class Users(CollectionBase):
         self.logout()
         if not username or not password:
             return error('missing username or password.')
-        login_user = self.find({'username': username})[0] # only get the first result
+        try:
+            login_user = self.find({'username': username})[0] # only get the first result
+        except:
+            return error('Username not found')
 
-        print(login_user)
         if login_user:
             if self.__compare_password(password, login_user['password']):
                 session['id'] = str(login_user['_id'])
