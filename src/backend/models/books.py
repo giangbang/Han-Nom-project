@@ -1,7 +1,7 @@
 from .base import CollectionBase
 from .images import images
 from .pages import pages
-from ..detectors.DB import *
+from ..detectors import *
 from ..message import *
 
 # {
@@ -60,6 +60,28 @@ class Books(CollectionBase):
             return deleted
         else:
             return error('Book {} not found.'.format(id))
+            
+    def detect_bboxes_and_labels_and_save(self, page_ids, files):
+        '''
+        Detect bounding boxes and labels of the given files (images).
+        This routine is called everytime users upload new books.
+        Arguments: 
+        page_ids: ids of pages
+        files: string images need to be detected
+        id and file order should match each other
+        '''
+        res, labels = detect_all(files)
+
+        ok = True
+        for i, page_id in enumerate(page_ids):
+            bbox = res[i]['bbox']
+            shape = list(res[i]['shape'])
+       
+            ok = ok & pages.update_bbox_and_label(page_id, bbox, shape, labels[i])['success']
+  
+        if ok:
+            return success("Done")
+        return error("Something went wrong :v")
             
     def detect_bboxes_and_save(self, page_ids, files):
         '''

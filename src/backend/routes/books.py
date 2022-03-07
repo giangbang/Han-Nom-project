@@ -98,8 +98,12 @@ def save_uploaded_zipfile():
     if not upload['success']:
         return upload
     
+    # Note: only keep one of the following lines
     # comment this line if bbox detection is undesirable
-    res = books.detect_bboxes_and_save(upload['data'], files)
+    # res = books.detect_bboxes_and_save(upload['data'], files)
+    
+    # comment this line if bbox and label detection is undesirable
+    res = books.detect_bboxes_and_labels_and_save(upload['data'], files)
     
     return success("Done")
 

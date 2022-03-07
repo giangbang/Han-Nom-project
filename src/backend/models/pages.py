@@ -6,11 +6,13 @@ from ..message import *
     # bookId
     # page_number: 
     # annotations: [
-        # {x,y,w,h}
+        # [[x0,y0], [x1,y1], [x2,y2], [x3,y3]],
+        # [...]
     # ]
     # size: [w, h]
     # verified: 
     # imgId:
+    # labels: [[top 5], []]
 # }
 
 class Pages(CollectionBase):
@@ -20,7 +22,8 @@ class Pages(CollectionBase):
         self.optional_fields.update(
             verified=False,
             annotations=None,
-            size=[0,0]
+            size=[0,0],
+            labels=[]
         )
         
     def delete(self, id):
@@ -30,9 +33,12 @@ class Pages(CollectionBase):
             return super().delete(id)
         return error("Page {} not found".format(id))
         
+    def update_bbox_and_label(self, id, bbox, shape, labels):
+        return pages.update(id, {"annotations": bbox, "size": shape, "labels": labels})
+    
     def update_bbox(self, id, bbox, shape):
         return pages.update(id, {"annotations": bbox, "size": shape})
-        
+    
     def upload(self, page_img, bookId, page_number, **kwargs):
         insert_img = images.upload(page_img)
         if not insert_img['success']:

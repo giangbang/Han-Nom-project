@@ -71,6 +71,7 @@ class DBInference:
         img = Image.open(io.BytesIO(image_string))
         img = np.array(img)
         return img
+        
 
     def detect_single_image(self, image_string):
         '''
@@ -81,6 +82,7 @@ class DBInference:
         return img
         
     def detect_batch_image(self, image_batch_string):
+        # dont use for now
         '''
         Batch version of `detect_single_image`
         `image_batch_string` is a list of string image
@@ -105,6 +107,9 @@ class DBInference:
         }
         
 infer = DBInference()
+
+def detect(img):
+    return infer.predict(img)
 
 def detect_single_image(image_string):
     return infer.detect_single_image(image_string)
